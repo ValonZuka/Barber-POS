@@ -80,6 +80,21 @@ function addToCart(item) {
 function renderCart() {
     
 }
+document.getElementById("barcodeInput").addEventListener("keydown", function (e) {
+    
+});
+
+document.getElementById("checkoutBtn").addEventListener("click", function () {
+    
+});
+
+document.getElementById("confirmCheckout").addEventListener("click", function () {
+    fetch("backend/api.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cart)
+    })
+});
 
 
 </script>
