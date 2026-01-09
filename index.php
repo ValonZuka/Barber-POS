@@ -56,6 +56,24 @@
         .service-button:hover, .service-button2:hover {
             background-color: #5e5e5e; 
         }
+        #totalAmount {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        #checkoutBtn {
+            padding: 10px 20px;
+            margin-right:10px;
+            background-color: #d4af37;
+            color: #2c2c2c; 
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #checkoutBtn:hover {
+            background-color: #b5942a;
+        }
 </style>
 </head>
 <body>
