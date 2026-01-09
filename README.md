@@ -50,17 +50,17 @@ full-stack development using lightweight technologies.
 ```text
 barber-pos/
 │
-├── database/
-│   └── barberpos.db
+├── .vscode/
+│   └── settings.json
 │
 ├── backend/
-│   ├── db/
-│   ├── routes/
-│   └── server.js / index.php
-│
-├── frontend/
-│   ├── index.html
-│   ├── app.js
-│   └── styles.css
-│
+│   ├── api.php
+│   ├── db.sqlite
+│   ├── get-product.php
+│   ├── test-db.php
+|   └── init.php
+|
+├── index.php
+├── Realisation.php
+├── stock.php
 └── README.md
