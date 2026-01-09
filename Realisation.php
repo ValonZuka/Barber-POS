@@ -91,3 +91,37 @@ try {
 <body>
     <a href="index.php" class="back-btn">Kthehu Mbrapa</a>
     <h1>Realizimi Shitjeve</h1>
+    <?php if (empty($sales_by_date)) { ?>
+        <p>Nuk ka shitje te realizuara! </p>
+    <?php } else { ?>
+        <?php foreach ($sales_by_date as $date => $products) { ?>
+            <div class="sales-section">
+                <h2><?php echo date('F j, Y', strtotime($date)); ?></h2>
+                <table>
+                    <tr>
+                        <th>Emri Produktit</th>
+                        <th>Shuma Shitjeve</th>
+                        <th>Qmimi Total</th>
+                    </tr>
+                    <?php 
+                    $daily_total = 0;
+                    foreach ($products as $product) { 
+                        $daily_total += $product['total_price'];
+                    ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($product['name']); ?></td>
+                            <td><?php echo $product['quantity']; ?></td>
+                            <td>$<?php echo number_format($product['total_price'], 2); ?></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+                <div class="total">Totali Ditor: $<?php echo number_format($daily_total, 2); ?></div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+</body>
+</html>
+
+<?php
+$db->close();
+?>
