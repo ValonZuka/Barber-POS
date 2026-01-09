@@ -313,4 +313,3 @@ document.querySelectorAll(".close").forEach(closeBtn => {
 </script>
 </body>
 </html>
-
