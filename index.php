@@ -151,6 +151,39 @@ document.querySelectorAll(".close").forEach(closeBtn => {
                 event.target.style.display = "none";
             }
         };
+        document.getElementById("closeEmptyCart").addEventListener("click", function () {
+            document.getElementById("emptyCartModal").style.display = "none";
+        });
+
+        // Confirm checkout button logic
+        document.getElementById("confirmCheckout").addEventListener("click", function () {
+            if (cart.length === 0) {
+                document.getElementById("emptyCartModal").style.display = "block";
+                return;
+            }
+
+            // Send data to backend
+            fetch("backend/api.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(cart)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    cart = []; // Clear the cart
+                    renderCart(); // Update the cart display
+                    document.getElementById("checkoutModal").style.display = "none"; // Close the modal
+                }
+            })
+            .catch(() => alert("Error ne perfundimin e shitjes"));
+        });
+
+        // Initial render of cart
+        renderCart();
+    
 </script>
 </body>
 </html>
