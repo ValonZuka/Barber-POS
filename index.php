@@ -38,3 +38,20 @@
 
 <button class="stock-btn" onclick="window.location.href='stock.php'">Shiko Stock-un</button>
 <button class="realisation-btn" onclick="window.location.href='Realisation.php'">Shiko Shitjet</button>
+<div id="checkoutModal" class="modal">
+    <div class="modal-content">
+        <span class="close">×</span>
+        <h2>Checkout Summary</h2>
+        <p id="checkoutDetails"></p>
+        <button id="confirmCheckout">Confirm Checkout</button>
+    </div>
+</div>
+
+<div id="emptyCartModal" class="modal">
+    <div class="modal-content">
+        <span class="close">×</span>
+        <h2>Shporta Bosh</h2>
+        <p>Shporta eshte bosh! te lutem mbushe per te perfunduar realizimin .</p>
+        <button id="closeEmptyCart">Close</button>
+    </div>
+</div>
