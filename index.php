@@ -94,6 +94,28 @@
             justify-content: center;
             flex-wrap: wrap;
         }
+         .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            background-color: #3e3e3e;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #d4af37;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            color: #d4af37; 
+            text-align: center; 
+        }
 </style>
 </head>
 <body>
