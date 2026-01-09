@@ -16,6 +16,19 @@
         text-align: center;
         margin-bottom: 20px;
     }
+    #barcodeInput {
+            width: 98.9%;
+            padding: 10px;
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        #cart {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #3e3e3e;
+            border-radius: 5px;
+        }
 </style>
 </head>
 <body>
