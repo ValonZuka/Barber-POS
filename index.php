@@ -20,29 +20,38 @@
 </head>
 <body>
     <h1>BuzzCutt System</h1>
-<input type="text" id="barcodeInput" placeholder="Scan barcode" />
+    <input type="text" id="barcodeInput" placeholder="Scan barcode" />
 
-<div class="button-container">
-    <button class="service-button" onclick="addService('Qethje', 3.00)">Qethje - $3.00</button>
-    <button class="service-button2" onclick="addService('Qethje me rroje', 4.00)">Qethje mrezh - $4.00</button>
-    <button class="service-button2" onclick="addService('Larje Flokve', 1.00)">Larje Flokve - $1.00</button>
-    <button class="service-button2" onclick="addService('Pastrimi Ftyres me Dyll', 2.00)">Pastrimi Ftyres me Dyll - $2.00</button>
-</div>
-
-<div id="cart"></div>
-<div id="totalAmount">Total: $0.00</div>
-<button id="checkoutBtn">~ Totali ~</button>
-
-<button class="stock-btn" onclick="window.location.href='stock.php'">Shiko Stock-un</button>
-<button class="realisation-btn" onclick="window.location.href='Realisation.php'">Shiko Shitjet</button>
-<div id="checkoutModal" class="modal">
-    <div class="modal-content">
-        <span class="close">×</span>
-        <h2>Checkout Summary</h2>
-        <p id="checkoutDetails"></p>
-        <button id="confirmCheckout">Confirm Checkout</button>
+    <div class="button-container">
+        <button class="service-button" onclick="addService('Qethje', 3.00)">Qethje - $3.00</button>
+        <button class="service-button2" onclick="addService('Qethje me rroje', 4.00)">Qethje mrezh - $4.00</button>
+        <button class="service-button2" onclick="addService('Larje Flokve', 1.00)">Larje Flokve - $1.00</button>
+        <button class="service-button2" onclick="addService('Pastrimi Ftyres me Dyll', 2.00)">Pastrimi Ftyres me Dyll - $2.00</button>
     </div>
-</div>
+
+    <div id="cart"></div>
+    <div id="totalAmount">Total: $0.00</div>
+    <button id="checkoutBtn">~ Totali ~</button>
+    <button class="stock-btn" onclick="window.location.href='stock.php'">Shiko Stock-un</button>
+    <button class="realisation-btn" onclick="window.location.href='Realisation.php'">Shiko Shitjet</button>
+
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Checkout Summary</h2>
+            <p id="checkoutDetails"></p>
+            <button id="confirmCheckout">Confirm Checkout</button>
+        </div>
+    </div>
+
+    <div id="emptyCartModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Shporta Bosh</h2>
+            <p>Shporta eshte bosh! te lutem mbushe per te perfunduar realizimin .</p>
+            <button id="closeEmptyCart">Close</button>
+        </div>
+    </div>
 
 <div id="emptyCartModal" class="modal">
     <div class="modal-content">
@@ -53,45 +62,72 @@
     </div>
 </div>
 <script>    
-let cart = [];
+ let cart = [];
 
-function addService(name, price) {
-    addToCart({
-        product_id: name,
-        name: name,
-        quantity: 1,
-        price: price
-    });
-}
+        document.getElementById("barcodeInput").addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                const barcode = e.target.value.trim();
+                if (!barcode) return;
 
-function addToCart(item) {
-    const index = cart.findIndex(i => i.product_id === item.product_id);
-    if (index !== -1) {
-        cart[index].quantity += 1;
-    } else {
-        cart.push(item);
-    }
-    renderCart();
-}
+                fetch("backend/get-product.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ barcode })
+                })
+                .then(res => res.json())
+                .then(product => {
+                    if (product.error) {
+                        alert(product.error);
+                    } else {
+                        addToCart({
+                            product_id: product.id,
+                            name: product.name,
+                            quantity: 1,
+                            price: product.price
+                        });
+                    }
+                    e.target.value = ""; // Clear the input
+                })
+                .catch(() => alert("Nuk u gjend produkti"));
+            }
+        });
 
-function renderCart() {
-    
-}
-document.getElementById("barcodeInput").addEventListener("keydown", function (e) {
-    
-});
+        function addService(name, price) {
+            addToCart({
+                product_id: name, // Using service name as ID for simplicity
+                name: name,
+                quantity: 1,
+                price: price
+            });
+        }
 
-document.getElementById("checkoutBtn").addEventListener("click", function () {
-    
-});
+        function addToCart(item) {
+            const index = cart.findIndex(i => i.product_id === item.product_id);
+            if (index !== -1) {
+                cart[index].quantity += 1;
+            } else {
+                cart.push(item);
+            }
+            renderCart();
+        }
 
-document.getElementById("confirmCheckout").addEventListener("click", function () {
-    fetch("backend/api.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cart)
-    })
-});
+        function renderCart() {
+            const cartDiv = document.getElementById("cart");
+            cartDiv.innerHTML = "";
+            if (cart.length === 0) {
+                const emptyMessage = document.createElement("div");
+                emptyMessage.id = "emptyCartMessage";
+                emptyMessage.textContent = "Shporta Bosh ...";
+                cartDiv.appendChild(emptyMessage);
+            } else {
+                cart.forEach(item => {
+                    const line = document.createElement("div");
+                    line.textContent = `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`;
+                    cartDiv.appendChild(line);
+                });
+            }
+            document.getElementById("totalAmount").textContent = `Total: $${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`;
+        }
 
 
 </script>
