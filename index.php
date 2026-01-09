@@ -116,6 +116,18 @@
             color: #d4af37; 
             text-align: center; 
         }
+        .close {
+            color: #d4af37; 
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #fff; 
+            text-decoration: none;
+            cursor: pointer;
+        }
 </style>
 </head>
 <body>
