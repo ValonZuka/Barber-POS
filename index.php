@@ -29,6 +29,33 @@
             background-color: #3e3e3e;
             border-radius: 5px;
         }
+        .service-button {
+            width: 110px;
+            height: 100px;
+            background-color: #4e4e4e;
+            color: #d4af37; 
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .service-button2 {
+            width: 120px;
+            height: 100px;
+            background-color: #4e4e4e;
+            color: #d4af37; 
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .service-button:hover, .service-button2:hover {
+            background-color: #5e5e5e; 
+        }
 </style>
 </head>
 <body>
