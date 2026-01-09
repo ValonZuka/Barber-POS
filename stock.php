@@ -80,3 +80,18 @@ try {
             <th>Invertari Aktiv</th>
             <th>Shitjet Totale</th>
         </tr>
+
+<?php while ($product = $available_result->fetchArray(SQLITE3_ASSOC)) { ?>
+  <tr>
+        <td><?php echo htmlspecialchars($product['name']); ?></td>
+        <td><?php echo $product['stock']; ?></td>
+        <td><?php echo isset($sold_data[$product['id']]) ? $sold_data[$product['id']] : 0; ?></td>
+  </tr>
+<?php } ?>
+    </table>
+</body>
+</html>
+
+        <?php
+        $db->close();
+        ?>
