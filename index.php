@@ -55,3 +55,31 @@
         <button id="closeEmptyCart">Close</button>
     </div>
 </div>
+<script>    
+let cart = [];
+
+function addService(name, price) {
+    addToCart({
+        product_id: name,
+        name: name,
+        quantity: 1,
+        price: price
+    });
+}
+
+function addToCart(item) {
+    const index = cart.findIndex(i => i.product_id === item.product_id);
+    if (index !== -1) {
+        cart[index].quantity += 1;
+    } else {
+        cart.push(item);
+    }
+    renderCart();
+}
+
+function renderCart() {
+    
+}
+
+
+</script>
