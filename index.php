@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuzzCut Barber </title>
-</head>
-<body>
-</body>
-</html>
-<style>
+    <style>
     body {
         background-color: #2c2c2c;  
         color: #d4af37; 
@@ -20,9 +16,10 @@
         text-align: center;
         margin-bottom: 20px;
     }
-    /* ALL CSS */
 </style>
-<h1>BuzzCutt System</h1>
+</head>
+<body>
+    <h1>BuzzCutt System</h1>
 <input type="text" id="barcodeInput" placeholder="Scan barcode" />
 
 <div class="button-container">
@@ -98,3 +95,6 @@ document.getElementById("confirmCheckout").addEventListener("click", function ()
 
 
 </script>
+</body>
+</html>
+
