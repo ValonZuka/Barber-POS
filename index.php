@@ -128,6 +128,20 @@
             text-decoration: none;
             cursor: pointer;
         }
+         #confirmCheckout, #closeEmptyCart {
+            background-color: #d4af37; 
+        
+            color: #2c2c2c; 
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #confirmCheckout:hover, #closeEmptyCart:hover {
+            background-color: #b5942a; 
+        }
 </style>
 </head>
 <body>
