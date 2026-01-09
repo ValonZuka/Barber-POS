@@ -134,14 +134,23 @@
                 return;
             }
 
-            // Show modal with checkout details
             let checkoutDetails = cart.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('<br>');
             let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
             document.getElementById("checkoutDetails").innerHTML = checkoutDetails + `<br><strong>Total: $${total}</strong>`;
             document.getElementById("checkoutModal").style.display = "block";
         });
 
+document.querySelectorAll(".close").forEach(closeBtn => {
+            closeBtn.onclick = function() {
+                this.closest(".modal").style.display = "none";
+            };
+        });
 
+        window.onclick = function(event) {
+            if (event.target.classList.contains("modal")) {
+                event.target.style.display = "none";
+            }
+        };
 </script>
 </body>
 </html>
