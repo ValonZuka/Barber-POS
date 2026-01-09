@@ -74,6 +74,26 @@
         #checkoutBtn:hover {
             background-color: #b5942a;
         }
+        .stock-btn, .realisation-btn {
+            padding: 10px 20px;
+            background-color: #d4af37;
+            color: #2c2c2c; 
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        .stock-btn:hover, .realisation-btn:hover {
+            background-color: #b5942a; 
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 </style>
 </head>
 <body>
